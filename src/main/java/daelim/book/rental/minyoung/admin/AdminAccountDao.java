@@ -19,6 +19,7 @@ public class AdminAccountDao {
     private final BCryptPasswordEncoder passwordEncoder;
     private JdbcTemplate jdbcTemplate;
 
+
     @Autowired
     public AdminAccountDao(DataSource dataSource, BCryptPasswordEncoder passwordEncoder) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -202,21 +203,21 @@ public class AdminAccountDao {
                 @Override
                 public AdminAccountVo mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-                    AdminAccountVo adminMemberVo = new AdminAccountVo();
-                    adminMemberVo.setNo(rs.getInt("no"));
-                    adminMemberVo.setId(rs.getString("id"));
-                    adminMemberVo.setName(rs.getString("name"));
-                    adminMemberVo.setPassword(rs.getString("password"));
-                    adminMemberVo.setGender(rs.getString("gender"));
-                    adminMemberVo.setPart(rs.getString("part"));
-                    adminMemberVo.setPosition(rs.getString("position"));
-                    adminMemberVo.setEmail(rs.getString("email"));
-                    adminMemberVo.setPhone(rs.getString("phone"));
-                    adminMemberVo.setRegDate(rs.getString("regDate"));
-                    adminMemberVo.setModDate(rs.getString("modDate"));
-                    adminMemberVo.setApproval(rs.getInt("approval"));
+                    AdminAccountVo adminAccountVo = new AdminAccountVo();
+                    adminAccountVo.setNo(rs.getInt("no"));
+                    adminAccountVo.setId(rs.getString("id"));
+                    adminAccountVo.setName(rs.getString("name"));
+                    adminAccountVo.setPassword(rs.getString("password"));
+                    adminAccountVo.setGender(rs.getString("gender"));
+                    adminAccountVo.setPart(rs.getString("part"));
+                    adminAccountVo.setPosition(rs.getString("position"));
+                    adminAccountVo.setEmail(rs.getString("email"));
+                    adminAccountVo.setPhone(rs.getString("phone"));
+                    adminAccountVo.setRegDate(rs.getString("regDate"));
+                    adminAccountVo.setModDate(rs.getString("modDate"));
+                    adminAccountVo.setApproval(rs.getInt("approval"));
 
-                    return adminMemberVo;
+                    return adminAccountVo;
 
                 }
 
@@ -231,7 +232,7 @@ public class AdminAccountDao {
 
     }
 
-    public int updatePassword(String a_m_id, String newPassword) {
+    public int updatePassword(String id, String newPassword) {
         System.out.println("[AdminMemberDao] updatePassword()");
 
         String sql =  "UPDATE TB_ADMIN_ACCOUNT SET "
@@ -239,7 +240,7 @@ public class AdminAccountDao {
                 + "WHERE id = ?";
         int result = -1;
         try {
-            result = jdbcTemplate.update(sql, bCryptPasswordEncoder.encode(newPassword), a_m_id);
+            result = jdbcTemplate.update(sql, passwordEncoder.encode(newPassword), id);
 
         } catch (Exception e) {
             e.printStackTrace();
