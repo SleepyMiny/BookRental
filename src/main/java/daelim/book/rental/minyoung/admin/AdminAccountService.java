@@ -3,6 +3,7 @@ package daelim.book.rental.minyoung.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -27,7 +28,7 @@ public class AdminAccountService {
     private AdminAccountDao adminAccountDao;
 
     @Autowired
-    JavaMailSenderImpl javaMailSenderImpl;
+    private JavaMailSender javaMailSender;  // ✅ 인터페이스 타입으로 수정
 
     public int createAccount(AdminAccountVo adminAccountVo) {
         System.out.println("[AdminAccountService] createAccount");
@@ -79,7 +80,7 @@ public class AdminAccountService {
         if (selectedAdminAccountVo != null) {
 
             String newPassword = createNewPassword();
-            result = adminAccountDao.updateAdminAccount(adminAccountVo.getId(), newPassword);
+            result = adminAccountDao.updatePassword(adminAccountVo.getId(), newPassword);
 
             if (result > 0)
                 sendNewPasswordByMail(adminAccountVo.getEmail(), newPassword);
@@ -133,7 +134,7 @@ public class AdminAccountService {
             }
 
         };
-        javaMailSenderImpl.send(mimeMessagePreparator);
+        javaMailSender.send(mimeMessagePreparator);
 
     }
 

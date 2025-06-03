@@ -1,6 +1,7 @@
 <%@page import="daelim.book.rental.minyoung.admin.AdminAccountVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8"  %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link href="<c:url value='/resources/css/admin/include/nav.css' />" rel="stylesheet" type="text/css">
@@ -30,9 +31,9 @@
                         </c:if>
 
                         <li><a href="<c:url value='/book/account/getRentalBooks' />">대출도서</a></li>
-                        <li><a href="<c:url value='/book/account/getAllBooks' />">전체도서</a></li>
+                        <li><a href="<c:url value='/admin/book/getAllBooks' />">전체도서</a></li>
                         <li><a href="<c:url value='/book/account/getHopeBooks' />">희망도서(입고처리)</a></li>
-                        <li><a href="<c:url value='/book/account/registerBookForm' />">도서등록</a></li>
+                        <li><a href="<c:url value='/admin/book/modifyBookForm' />">도서등록</a></li>
                     </ul>
                 </div>
             </c:otherwise>

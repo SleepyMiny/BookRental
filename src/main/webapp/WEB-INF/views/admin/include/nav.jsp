@@ -26,9 +26,9 @@
                 </c:if>
 
                 <li><a href="">대출도서</a></li>
-                <li><a href="">전체도서</a></li>
+                <li><a href="<c:url value='/admin/book/getAllBooks' />">전체도서</a></li>
                 <li><a href="">희망도서(입고처리)</a></li>
-                <li><a href="">도서등록</a></li>
+                <li><a href="<c:url value='/admin/book/modifyBookForm' />">도서등록</a></li>
             </ul>
         </div>
         <%
