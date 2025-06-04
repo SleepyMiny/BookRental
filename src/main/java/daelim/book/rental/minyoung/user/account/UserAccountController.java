@@ -99,4 +99,9 @@ public class UserAccountController {
         return nextPage;
     }
 
+    @GetMapping("findPasswordForm")
+    public String findPasswordForm() {
+        return "user/find_password_form";
+    }
+
 }
