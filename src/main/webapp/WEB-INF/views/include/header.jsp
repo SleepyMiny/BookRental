@@ -13,8 +13,8 @@
     <div id="header_wrap">
         <div class="menu">
             <ul>
-                <li><a class="user" href="">USER HOME</a></li>
-                <li><a class="admin" href="">ADMIN HOME</a></li>
+                <li><a class="user" href="<c:url value='/user/account/loginForm' />">USER HOME</a></li>
+                <li><a class="admin" href="<c:url value='/admin/account/loginForm' />">ADMIN HOME</a></li>
             </ul>
         </div>
 

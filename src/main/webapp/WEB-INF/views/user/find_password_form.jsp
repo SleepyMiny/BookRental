@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <jsp:include page="../include/title.jsp"/>
-  <link href="<c:url value='/resources/css/user/find_password_form.css' />" rel="stylesheet" type="text/css">
+  <link href="<c:url value='/resources/css/admin/find_password_form.css' />" rel="stylesheet" type="text/css">
 </head>
 <body>
 
