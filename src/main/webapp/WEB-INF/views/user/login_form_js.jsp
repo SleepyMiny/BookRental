@@ -12,9 +12,9 @@
             alert('INPUT ADMIN ID.');
             form.id.focus();
 
-        } else if (form.password.value == '') {
+        } else if (form.pw.value == '') {
             alert('INPUT ADMIN PW.');
-            form.password.focus();
+            form.pw.focus();
 
         } else {
             form.submit();

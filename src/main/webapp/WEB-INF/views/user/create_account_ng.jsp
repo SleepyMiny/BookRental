@@ -10,7 +10,7 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
-<jsp:include page="../admin/include/nav.jsp" />
+<jsp:include page="nav.jsp" />
 <section>
     <div id="section_wrap">
         <div class="word">

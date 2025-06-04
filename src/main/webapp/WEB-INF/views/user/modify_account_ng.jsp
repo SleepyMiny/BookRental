@@ -6,19 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <jsp:include page="../include/title.jsp" />
-    <link href="<c:url value='/resources/css/admin/login_result.css' />" rel="stylesheet" type="text/css">
+    <link href="<c:url value='/resources/css/user/modify_account_result.css' />" rel="stylesheet" type="text/css">
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
-<jsp:include page="nav.jsp" />
+<jsp:include page="nav_user.jsp" />
 <section>
     <div id="section_wrap">
         <div class="word">
-            <h3>LOGIN FAIL!!</h3>
-        </div>
-        <div class="others">
-            <a href="<c:url value='/user/account/createAccountForm' />">create account</a>
-            <a href="<c:url value='/user/account/loginForm' />">login</a>
+            <h3>MODIFY ACCOUNT FAIL!!</h3>
         </div>
     </div>
 </section>

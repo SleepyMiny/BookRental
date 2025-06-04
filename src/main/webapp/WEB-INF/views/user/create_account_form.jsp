@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
-<jsp:include page="../admin/include/nav.jsp" />
+<jsp:include page="nav.jsp" />
 <section>
     <div id="section_wrap">
         <div class="word">
@@ -31,7 +31,7 @@
                 </select> <br>
                 <input type="email" name="email" placeholder="Enter your email"> <br>
                 <input type="text" name="phone" placeholder="Enter your phone number"> <br>
-                <input type="button" value="Sign Up" onclick="validateAndSubmit();">
+                <input type="button" value="Sign Up" onclick="createAccountForm();">
                 <input type="reset" value="Reset">
             </form>
         </div>

@@ -12,7 +12,7 @@
 </head>
 <body>
 <jsp:include page="../include/header.jsp" />
-<jsp:include page="../admin/include/nav.jsp" />
+<jsp:include page="nav.jsp" />
 <section>
     <div id="section_wrap">
         <div class="word">
@@ -20,8 +20,8 @@
         </div>
         <div class="login_form">
             <form action="<c:url value="/user/account/loginConfirm" /> " name="login_form" method="post">
-                <input type="text" name="id" placeholder="INPUT ADMIN ID."> <br>
-                <input type="password" name="password" placeholder="INPUT ADMIN PW."> <br>
+                <input type="text" name="id" placeholder="INPUT USER ID."> <br>
+                <input type="password" name="pw" placeholder="INPUT USER PW."> <br>
                 <input type="button" value="login" onclick="loginForm();">
                 <input type="reset" value="reset">
             </form>

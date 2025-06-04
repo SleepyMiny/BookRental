@@ -42,7 +42,6 @@ public class UserAccountDao {
         return result;
     }
 
-    // 아이디 중복 확인
     public boolean existAccount(String id) {
         String sql = "SELECT COUNT(*) FROM TB_USER_MEMBER WHERE id = ?";
         try {
@@ -50,11 +49,10 @@ public class UserAccountDao {
             return count > 0;
         } catch (Exception e) {
             e.printStackTrace();
-            return true; // 오류 발생 시 중복된 것으로 처리
+            return true;
         }
     }
 
-    // 로그인 정보 확인
     public UserAccountVo selectUser(UserAccountVo vo) {
         String sql = "SELECT * FROM TB_USER_MEMBER WHERE id = ?";
         List<UserAccountVo> users = new ArrayList<>();
@@ -84,4 +82,54 @@ public class UserAccountDao {
 
         return null;
     }
+
+    public int updateUserAccount(UserAccountVo userVo) {
+        String sql = "UPDATE TB_USER_MEMBER SET "
+                + "name = ?, "
+                + "gender = ?, "
+                + "email = ?, "
+                + "phone = ?, "
+                + "modDate = NOW() "
+                + "WHERE no = ?";
+
+        int result = -1;
+        try {
+            result = jdbcTemplate.update(sql,
+                    userVo.getName(),
+                    userVo.getGender(),
+                    userVo.getEmail(),
+                    userVo.getPhone(),
+                    userVo.getNo()
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public UserAccountVo selectUserByNo(int no) {
+        String sql = "SELECT * FROM TB_USER_MEMBER WHERE no = ?";
+        List<UserAccountVo> users = new ArrayList<>();
+
+        try {
+            users = jdbcTemplate.query(sql, (rs, rowNum) -> {
+                UserAccountVo vo = new UserAccountVo();
+                vo.setNo(rs.getInt("no"));
+                vo.setId(rs.getString("id"));
+                vo.setPw(rs.getString("pw"));
+                vo.setName(rs.getString("name"));
+                vo.setGender(rs.getString("gender"));
+                vo.setEmail(rs.getString("email"));
+                vo.setPhone(rs.getString("phone"));
+                vo.setRegDate(rs.getTimestamp("regDate").toLocalDateTime());
+                vo.setModDate(rs.getTimestamp("modDate").toLocalDateTime());
+                return vo;
+            }, no);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return users.isEmpty() ? null : users.get(0);
+    }
+
 }

@@ -61,13 +61,40 @@ public class UserAccountController {
     @GetMapping("/logoutConfirm")
     public String logoutConfirm(@CookieValue(value = "loginUser", required = false) String loginUser,
                                 HttpServletResponse response, HttpSession session) {
-        String nextPage = "redirect:/user/loginForm";
+        String nextPage = "redirect:/user/account/loginForm";
 
         Cookie cookie = new Cookie("loginUser", loginUser);
         cookie.setMaxAge(0);
         response.addCookie(cookie);
 
         session.invalidate();
+
+        return nextPage;
+    }
+
+    @GetMapping("/modifyAccountForm")
+    public String modifyAccountForm(HttpSession session) {
+        UserAccountVo loginedUser = (UserAccountVo) session.getAttribute("loginedUser");
+
+        if (loginedUser == null) {
+            return "redirect:/user/account/loginForm";
+        }
+
+        return "user/modify_account_form";
+    }
+
+    @PostMapping("/modifyAccountConfirm")
+    public String modifyAccountConfirm(UserAccountVo userVo, HttpSession session) {
+        String nextPage = "user/modify_account_ok";
+        int result = userAccountDao.updateUserAccount(userVo);
+
+        if (result > 0) {
+            UserAccountVo updatedUser = userAccountDao.selectUserByNo(userVo.getNo());
+            session.setAttribute("loginedUser", updatedUser);
+            session.setMaxInactiveInterval(60 * 30);
+        } else {
+            nextPage = "user/modify_account_ng";
+        }
 
         return nextPage;
     }
